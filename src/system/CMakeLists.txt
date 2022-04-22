@@ -83,6 +83,7 @@ if(VITA)
         mpg123
         FLAC
         SceAudio_stub
+        SceAudioIn_stub
         SceCommonDialog_stub
         SceCtrl_stub
         SceDisplay_stub
