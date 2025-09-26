@@ -16,6 +16,8 @@ if(WIN32 OR CYGWIN OR VITA)
 endif()
 option(INSTALL_PORTABLE "The installation step should put the data directory next to the runtime" ${INSTALL_PORTABLE_DEFAULT})
 
+option(USE_BUNDLED_SDL2 "Download and build SDL2 libraries" OFF)
+
 # Currently unit tests only work only in Debug
 if(NOT "${CMAKE_BUILD_TYPE}" STREQUAL "release" AND NOT VITA)
     option(BUILD_TESTS "Build the unit tests" ON)
@@ -59,6 +61,7 @@ if(BUILD_TEST_COVERAGE)
 endif()
 
 
+include(BundledDependencies)
 add_subdirectory(thirdparty)
 
 
