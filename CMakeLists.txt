@@ -64,7 +64,6 @@ endif()
 
 
 include(BundledDependencies)
-add_subdirectory(thirdparty)
 
 
 # The main game source

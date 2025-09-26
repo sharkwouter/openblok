@@ -148,7 +148,6 @@ endif()
 
 add_library(module_game ${MOD_GAME_SRC} ${MOD_GAME_H})
 target_link_libraries(module_game module_system)
-target_link_libraries(module_game tinydir)
 target_compile_features(module_game PRIVATE cxx_std_17)
 
 include(EnableWarnings)

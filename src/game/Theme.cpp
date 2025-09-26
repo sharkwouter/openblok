@@ -4,10 +4,12 @@
 #include "system/Log.h"
 #include "system/Paths.h"
 
-#include <tinydir_cxx.h>
+#include <filesystem>
 #include <random>
 #include <regex>
 #include <set>
+
+namespace fs = std::filesystem;
 
 
 void ThemeConfig::set_theme_dir(const std::string& dir_name)
@@ -27,12 +29,12 @@ std::string ThemeConfig::resolve_path(const std::string& filename) const
 {
     // 1. user local theme dir
     std::string path = Paths::config() + m_theme_dir + filename;
-    if (path_exists(path))
+    if (fs::exists(path))
         return path;
 
     // 2. install theme dir
     path = Paths::data() + m_theme_dir + filename;
-    if (path_exists(path))
+    if (fs::exists(path))
         return path;
 
     // 3. default
@@ -59,18 +61,22 @@ std::string ThemeConfig::random_game_background() const
 std::string ThemeConfig::random_file_from(const std::string& dir_name) const
 {
     const std::string base_path = resolve_path(dir_name);
-    if (!path_exists(base_path))
+    if (!fs::exists(base_path) || !fs::is_directory(base_path))
         return "";
 
-    TinyDir dir(base_path);
-    const auto file_list = dir.file_list();
-    if (file_list.empty())
+    std::vector<fs::path> files;
+    for (const auto& entry : fs::directory_iterator(base_path)) {
+        if (entry.is_regular_file()) {
+            files.push_back(entry.path());
+        }
+    }
+    if (files.empty())
         return "";
 
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(0, file_list.size() - 1);
-    return file_list.at(dis(gen));
+    std::uniform_int_distribution<> dis(0, files.size() - 1);
+    return files[dis(gen)].string();
 }
 
 

@@ -16,10 +16,12 @@
 #include "system/Texture.h"
 #include "system/util/MakeUnique.h"
 
-#include <tinydir_cxx.h>
 #include <algorithm>
+#include <filesystem>
 #include <unordered_map>
 #include <assert.h>
+
+namespace fs = std::filesystem;
 
 
 namespace SubStates {
@@ -350,19 +352,16 @@ std::vector<std::string> Options::detectedThemes() const
 
 void Options::findThemeDirs(const std::string& base_path, std::vector<std::string>& found_themes) const
 {
-    if (!path_exists(base_path))
+    if (!fs::exists(base_path) || !fs::is_directory(base_path))
         return;
 
-    TinyDir base_theme_dir(base_path);
-    while (base_theme_dir.dir.has_next) {
-        tinydir_file file;
-        tinydir_readfile(&base_theme_dir.dir, &file);
+    for (const auto& entry : fs::directory_iterator(base_path)) {
+        if (!entry.is_directory())
+            continue;
 
-        const std::string cfg_path = std::string(file.path) + "/theme.cfg";
-        if (file.is_dir && path_exists(cfg_path))
-            found_themes.emplace_back(file.name);
-
-        tinydir_next(&base_theme_dir.dir);
+        const fs::path config_path = entry.path() / "theme.cfg";
+        if (fs::exists(config_path) && fs::is_regular_file(config_path))
+            found_themes.push_back(entry.path());
     }
 }
 
