@@ -1,3 +1,6 @@
+find_package(SDL2pp REQUIRED)
+
+
 set(MOD_SYSTEM_SRC
     Color.cpp
     ConfigFile.cpp
@@ -55,7 +58,7 @@ target_include_directories(module_system PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/..
 
 # use SDL2
 target_compile_definitions(module_system PRIVATE OPENBLOK_DATADIR="${DATADIR}")
-target_link_libraries(module_system SDL2pp)
+target_link_libraries(module_system SDL2pp::SDL2pp)
 
 # GNU gettext
 if(ENABLE_LOCALES)

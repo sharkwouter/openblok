@@ -76,3 +76,15 @@ if(USE_BUNDLED_SDL2)
         release-2.24.0
     )
 endif()
+
+
+if(USE_BUNDLED_SDL2PP)
+    set(SDL2PP_WITH_IMAGE ON)
+    set(SDL2PP_WITH_MIXER ON)
+    set(SDL2PP_WITH_TTF ON)
+    openblok_declare_gitrepo(
+        SDL2pp
+        https://github.com/libSDL2pp/libSDL2pp
+        b00d3b9eb98be4fa2eca7ae9d88f96d28796e4f0
+    )
+endif()

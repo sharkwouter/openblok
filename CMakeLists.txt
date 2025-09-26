@@ -17,6 +17,7 @@ endif()
 option(INSTALL_PORTABLE "The installation step should put the data directory next to the runtime" ${INSTALL_PORTABLE_DEFAULT})
 
 option(USE_BUNDLED_SDL2 "Download and build SDL2 libraries" OFF)
+option(USE_BUNDLED_SDL2PP "Download and build libSDL2pp" ON)
 
 # Currently unit tests only work only in Debug
 if(NOT "${CMAKE_BUILD_TYPE}" STREQUAL "release" AND NOT VITA)
