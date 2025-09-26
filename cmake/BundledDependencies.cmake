@@ -79,6 +79,7 @@ endif()
 
 
 if(USE_BUNDLED_SDL2PP)
+    set(SDL2PP_STATIC ON)
     set(SDL2PP_WITH_IMAGE ON)
     set(SDL2PP_WITH_MIXER ON)
     set(SDL2PP_WITH_TTF ON)

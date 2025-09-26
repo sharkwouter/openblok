@@ -53,7 +53,7 @@ set(MOD_SYSTEM_H
     util/MakeUnique.h
 )
 
-add_library(module_system ${MOD_SYSTEM_SRC} ${MOD_SYSTEM_H})
+add_library(module_system STATIC ${MOD_SYSTEM_SRC} ${MOD_SYSTEM_H})
 target_include_directories(module_system PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/../generated")
 
 # use SDL2
