@@ -27,7 +27,7 @@ Base::Base(MainMenuState& parent, AppContext& app)
     : current_column(&primary_buttons)
     , column_slide_anim(std::chrono::milliseconds(350),
                         [](double t){ return t; },
-                        [this](){  })
+                        [](){})
 {
     PieceFactory::changeInitialPositions(Rotations::SRS().initialPositions());
     column_slide_anim.stop();

@@ -253,7 +253,7 @@ Options::Options(MainMenuState& parent, AppContext& app)
 
     updatePositions(app.gcx());
 
-    fn_category_input = [this, &parent, &app](InputType input){
+    fn_category_input = [this](InputType input){
         assert(!current_subitem);
         switch (input) {
             case InputType::MENU_OK:

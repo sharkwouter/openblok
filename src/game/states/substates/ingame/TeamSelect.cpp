@@ -185,7 +185,7 @@ void TeamSelect::update(IngameState& parent, const std::vector<Event>& events, A
 
                                 parent.states.emplace_back(std::make_unique<Gameplay>(app, parent, 0, std::move(team_setup)));
                                 parent.states.emplace_back(std::make_unique<Countdown>(app));
-                                parent.states.emplace_back(std::make_unique<FadeIn>([&parent, &app](){
+                                parent.states.emplace_back(std::make_unique<FadeIn>([&parent](){
                                     parent.states.pop_back();
                                 }));
                                 parent.states.pop_front(); // pop teamselect

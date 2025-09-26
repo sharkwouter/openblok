@@ -160,10 +160,10 @@ void PlayerSelect::update(IngameState& parent, const std::vector<Event>& events,
                             for (const auto& slot : column_slots)
                                 parent.device_order.push_back(slot.second);
 
-                            parent.states.emplace_back(std::make_unique<FadeOut>([this, &parent, &app](){
+                            parent.states.emplace_back(std::make_unique<FadeOut>([&parent, &app](){
                                 parent.states.emplace_back(std::make_unique<Gameplay>(app, parent));
                                 parent.states.emplace_back(std::make_unique<Countdown>(app));
-                                parent.states.emplace_back(std::make_unique<FadeIn>([&parent, &app](){
+                                parent.states.emplace_back(std::make_unique<FadeIn>([&parent](){
                                     parent.states.pop_back();
                                 }));
                                 parent.states.pop_front(); // pop playerselect

@@ -11,7 +11,7 @@ RGBAColor LineClearAnim::anim_color = 0xEEEEEEFF_rgba;
 LineClearAnim::LineClearAnim(unsigned row)
     : WellAnimation()
     , row(row)
-    , row_percent(TIME_PER_ROW, [this](double t){
+    , row_percent(TIME_PER_ROW, [](double t){
             return t;
         })
 {}

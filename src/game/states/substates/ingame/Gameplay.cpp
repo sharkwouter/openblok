@@ -312,7 +312,7 @@ void Gameplay::registerObservers(IngameState& parent, AppContext& app)
     for (const DeviceID device_id : player_devices) {
         auto& well = parent.player_areas.at(device_id).well();
 
-        well.registerObserver(WellEvent::Type::PIECE_LOCKED, [this, &parent, device_id](const WellEvent&){
+        well.registerObserver(WellEvent::Type::PIECE_LOCKED, [this, device_id](const WellEvent&){
             sfx_onlock->playOnce();
 
             prev_piece_cleared_line.at(device_id) = current_piece_cleared_line.at(device_id);
@@ -360,7 +360,7 @@ void Gameplay::registerObservers(IngameState& parent, AppContext& app)
             sfx_onlineclear.at(event.lineclear.count - 1)->playOnce();
         });
 
-        well.registerObserver(WellEvent::Type::LINE_CLEAR, [this, &parent, &app, device_id](const WellEvent& event){
+        well.registerObserver(WellEvent::Type::LINE_CLEAR, [this, &parent, device_id](const WellEvent& event){
             assert(event.type == WellEvent::Type::LINE_CLEAR);
             assert(event.lineclear.count > 0);
             assert(event.lineclear.count <= 4);
@@ -405,7 +405,7 @@ void Gameplay::registerObservers(IngameState& parent, AppContext& app)
             player_stats.score += ScoreTable::value(ScoreType::SOFTDROP);
         });
 
-        well.registerObserver(WellEvent::Type::GAME_OVER, [this, &parent, &app, device_id](const WellEvent&){
+        well.registerObserver(WellEvent::Type::GAME_OVER, [this, &parent, device_id](const WellEvent&){
             // set game over for the triggering player
             player_status.at(device_id) = PlayerStatus::GAME_OVER;
             parent.player_areas.at(device_id).startGameOver();
