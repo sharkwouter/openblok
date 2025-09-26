@@ -1,3 +1,6 @@
+find_package(UnitTest++ REQUIRED)
+
+
 set(TEST_SRC
 	# test_GraphicsContext.cpp
 	test_Color.cpp

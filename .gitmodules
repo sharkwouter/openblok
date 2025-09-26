@@ -1,4 +1,0 @@
-[submodule "thirdparty/unittest-cpp"]
-	path = thirdparty/unittest-cpp
-	url = https://github.com/mmatyas/unittest-cpp.git
-	branch = cmake_modernize

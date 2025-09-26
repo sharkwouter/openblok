@@ -88,3 +88,13 @@ if(USE_BUNDLED_SDL2PP)
         b00d3b9eb98be4fa2eca7ae9d88f96d28796e4f0
     )
 endif()
+
+
+if(USE_BUNDLED_UNITTESTPP)
+    openblok_declare_gitrepo(
+        UnitTest++
+        https://github.com/mmatyas/unittest-cpp
+        no-install
+    )
+endif()
+
