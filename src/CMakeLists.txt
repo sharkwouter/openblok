@@ -7,11 +7,10 @@ target_include_directories(openblok PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/generat
 add_subdirectory(system)
 add_subdirectory(game)
 target_link_libraries(openblok module_game)
+target_compile_features(openblok PRIVATE cxx_std_17)
 
 include(EnableWarnings)
-include(RequireCxx11)
 enable_warnings(openblok)
-require_cxx11_or_higher(openblok)
 
 if(WIN32 OR CYGWIN)
     include(TryAddingCompilerFlag)

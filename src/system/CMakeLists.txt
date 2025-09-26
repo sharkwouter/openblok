@@ -97,9 +97,8 @@ if(VITA)
 endif()
 
 include(EnableWarnings)
-include(RequireCxx11)
 enable_warnings(module_system)
-require_cxx11_or_higher(module_system)
+target_compile_features(module_system PRIVATE cxx_std_17)
 
 option(ENABLE_JPG "Enable JPG image support" ON)
 option(ENABLE_MP3 "Enable MP3 music support" ON)
