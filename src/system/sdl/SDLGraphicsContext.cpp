@@ -13,11 +13,7 @@
 #include <assert.h>
 
 
-static constexpr int SDL_IMG_FLAGS = IMG_INIT_PNG
-#ifdef SDL2_ENABLE_JPG
-    | IMG_INIT_JPG
-#endif
-;
+static constexpr int SDL_IMG_FLAGS = IMG_INIT_PNG;
 
 const std::string LOG_TAG("video");
 
