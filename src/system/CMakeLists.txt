@@ -59,9 +59,11 @@ target_include_directories(module_system PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/..
 if(BUILD_TESTS)
     target_compile_definitions(module_system PUBLIC WITH_TESTS)
 endif()
+if(NOT INSTALL_PORTABLE)
+    target_compile_definitions(module_system PRIVATE OPENBLOK_DATADIR="${CMAKE_INSTALL_PREFIX}/${DATADIR}")
+endif()
 
 # use SDL2
-target_compile_definitions(module_system PRIVATE OPENBLOK_DATADIR="${DATADIR}")
 target_link_libraries(module_system SDL2pp::SDL2pp)
 
 # GNU gettext
