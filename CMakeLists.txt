@@ -20,6 +20,10 @@ option(USE_BUNDLED_SDL2 "Download and build SDL2 libraries" OFF)
 option(USE_BUNDLED_SDL2PP "Download and build libSDL2pp" ON)
 option(USE_BUNDLED_UNITTESTPP "Download and build UnitTest++" ON)
 
+option(ENABLE_MP3 "Enable MP3 music support" ON)
+option(ENABLE_MOD "Enable MOD music support" ON)
+option(ENABLE_FLAC "Enable FLAC music support" ON)
+
 # Currently unit tests only work only in Debug
 if(NOT "${CMAKE_BUILD_TYPE}" STREQUAL "release" AND NOT VITA)
     option(BUILD_TESTS "Build the unit tests" ON)

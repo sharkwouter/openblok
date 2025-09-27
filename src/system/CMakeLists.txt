@@ -103,9 +103,6 @@ include(EnableWarnings)
 enable_warnings(module_system)
 target_compile_features(module_system PRIVATE cxx_std_17)
 
-option(ENABLE_MP3 "Enable MP3 music support" ON)
-option(ENABLE_MOD "Enable MOD music support" OFF)
-option(ENABLE_FLAC "Enable FLAC music support" OFF)
 
 if (ENABLE_MP3)
     target_compile_definitions(module_system PRIVATE SDL2_ENABLE_MP3)
