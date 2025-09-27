@@ -14,9 +14,7 @@ LOWERAPP=${APP,,}
 GIT_REV=$(git rev-parse --short HEAD)
 echo $GIT_REV
 
-make install/strip DESTDIR=$HOME/$APP/$APP.AppDir
 mv $HOME/$APP/$APP.AppDir/usr/{games,bin}
-
 cd $HOME/$APP/
 
 wget -q https://github.com/probonopd/AppImages/raw/master/functions.sh -O ./functions.sh
@@ -84,15 +82,4 @@ mv ./usr/{share,bin/}
 ########################################################################
 
 cd .. # Go out of AppImage
-
-mkdir -p ../out/
-
-BINTRAY_USER=mmatyas
-BINTRAY_REPO=appimages
 generate_type2_appimage
-
-########################################################################
-# Upload the AppDir
-########################################################################
-
-transfer ../out/*

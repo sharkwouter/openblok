@@ -5,42 +5,49 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
   x11:
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
+      fail-fast: false
       matrix:
         build: [Release, Debug]
     steps:
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y
-          appstream
-          gettext
-          libsdl2-dev
-          libsdl2-image-dev
-          libsdl2-mixer-dev
-          libsdl2-ttf-dev
+        run: |
+          sudo sed -i 's/^# *deb-src/deb-src/g' /etc/apt/sources.list
+          sudo apt-get update
+          sudo apt-get install -y appstream gettext
+          sudo apt-get build-dep -y libsdl2-dev libsdl2-mixer-dev
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: 'recursive'
 
       - name: Configure
         run: cmake
-          -DCMAKE_INSTALL_PREFIX=/usr
+          -B build
+          -G Ninja
           -DCMAKE_BUILD_TYPE=${{ matrix.build }}
-          -DENABLE_MP3=OFF
+          -DCMAKE_INSTALL_PREFIX=/usr
+          -DUSE_BUNDLED_SDL2=ON
+          -DCMAKE_EXE_LINKER_FLAGS='-static-libgcc -static-libstdc++'
+          -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+
       - name: Build
-        run: make VERBOSE=1
+        run: cmake --build build --verbose
 
       - name: Test
-        run: ./tests/openblok_test
+        run: ./build/tests/openblok_test
         if: matrix.build == 'Debug'
 
       - name: Create AppImage
-        run: ./etc/appimage/travis.sh
         if: matrix.build == 'Release'
+        run: |
+          cmake --install build --strip --prefix "$HOME/openblok/openblok.AppDir/usr"
+          ./etc/appimage/travis.sh
+
       - name: Upload artifacts
+        if: matrix.build == 'Release'
         uses: actions/upload-artifact@v4
         with:
           name: linux
           path: /home/runner/out
-        if: matrix.build == 'Release'

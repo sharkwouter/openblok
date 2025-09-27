@@ -2,6 +2,8 @@ include(FetchContent)
 
 set(FETCHCONTENT_QUIET OFF)
 
+set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)  # Make sure dependencies take outside options
+
 
 function(openblok_declare_gitrepo name url tag)
     FetchContent_Declare(

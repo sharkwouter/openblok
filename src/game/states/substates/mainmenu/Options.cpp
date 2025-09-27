@@ -361,7 +361,7 @@ void Options::findThemeDirs(const std::string& base_path, std::vector<std::strin
 
         const fs::path config_path = entry.path() / "theme.cfg";
         if (fs::exists(config_path) && fs::is_regular_file(config_path))
-            found_themes.push_back(entry.path());
+            found_themes.push_back(entry.path().string());
     }
 }
 
