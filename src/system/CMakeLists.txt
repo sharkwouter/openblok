@@ -71,33 +71,6 @@ if(ENABLE_LOCALES)
     target_compile_definitions(module_system PUBLIC  WITH_LOCALES)
 endif()
 
-if(VITA)
-    target_link_libraries(module_system
-        SDL2
-        webp
-        pthread
-        png
-        freetype
-        vorbisfile
-        vorbis
-        ogg
-        jpeg
-        z
-        mikmod
-        modplug
-        mpg123
-        FLAC
-        SceAudio_stub
-        SceAudioIn_stub
-        SceCommonDialog_stub
-        SceCtrl_stub
-        SceDisplay_stub
-        SceGxm_stub
-        SceHid_stub
-        SceTouch_stub
-        SceMotion_stub
-    )
-endif()
 
 include(EnableWarnings)
 enable_warnings(module_system)
