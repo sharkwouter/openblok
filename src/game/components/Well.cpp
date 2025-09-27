@@ -84,7 +84,7 @@ void Well::updateGameplayOnly(const std::vector<InputEvent>& events)
     lock_delay.update(*this);
 }
 
-#ifndef NDEBUG
+#ifdef WITH_TESTS
 void Well::update(const std::vector<InputEvent>& events)
 {
     updateKeystateOnly(events);
@@ -469,7 +469,7 @@ void Well::notify(const WellEvent& event)
         obs(event);
 }
 
-#ifndef NDEBUG
+#ifdef WITH_TESTS
 
 std::string Well::asAscii() const
 {
@@ -481,7 +481,7 @@ void Well::fromAscii(const std::string& text)
     ascii.fromAscii(*this, text);
 }
 
-#endif
+#endif  // WITH_TESTS
 
 void Well::drawContent(GraphicsContext& gcx, int x, int y) const
 {

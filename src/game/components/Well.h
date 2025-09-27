@@ -16,7 +16,7 @@
 #include <vector>
 #include <stdint.h>
 
-#ifndef NDEBUG
+#ifdef WITH_TESTS
 #include "well/Ascii.h"
 #include <string>
 #endif
@@ -75,7 +75,7 @@ public:
         observers[static_cast<uint8_t>(evtype)].push_back(std::forward<WellObserver>(obs));
     }
 
-#ifndef NDEBUG
+#ifdef WITH_TESTS
     void update(const std::vector<InputEvent>&); ///< Update both the keystate and the game logic
     std::string asAscii() const;
     void fromAscii(const std::string&);
@@ -138,7 +138,7 @@ private:
     WellComponents::LockDelay lock_delay;
     WellComponents::Render renderer;
     WellComponents::TSpin tspin;
-#ifndef NDEBUG
+#ifdef WITH_TESTS
     WellComponents::Ascii ascii;
 #endif
 
@@ -148,7 +148,7 @@ private:
     friend class WellComponents::LockDelay;
     friend class WellComponents::Render;
     friend class WellComponents::TSpin;
-#ifndef NDEBUG
+#ifdef WITH_TESTS
     friend class WellComponents::Ascii;
 #endif
 };

@@ -12,7 +12,7 @@ std::unordered_map<PieceType, std::shared_ptr<Mino>, PieceTypeHash> MinoStorage:
 std::unordered_map<PieceType, std::shared_ptr<Mino>, PieceTypeHash> MinoStorage::ghosts;
 std::shared_ptr<Mino> MinoStorage::matrixcell;
 
-#ifndef NDEBUG
+#ifdef WITH_TESTS
 void MinoStorage::loadDummyMinos()
 {
     for (const auto& type : PieceTypeList) {

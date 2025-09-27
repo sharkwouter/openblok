@@ -56,6 +56,10 @@ set(MOD_SYSTEM_H
 add_library(module_system STATIC ${MOD_SYSTEM_SRC} ${MOD_SYSTEM_H})
 target_include_directories(module_system PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/../generated")
 
+if(BUILD_TESTS)
+    target_compile_definitions(module_system PUBLIC WITH_TESTS)
+endif()
+
 # use SDL2
 target_compile_definitions(module_system PRIVATE OPENBLOK_DATADIR="${DATADIR}")
 target_link_libraries(module_system SDL2pp::SDL2pp)

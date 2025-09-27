@@ -19,6 +19,7 @@ set(TEST_H
 )
 
 add_executable(openblok_test ${TEST_SRC} ${TEST_H})
+add_test(NAME openblok_unittests COMMAND openblok_test)
 
 target_link_libraries(openblok_test UnitTest++)
 target_link_libraries(openblok_test module_system)

@@ -141,12 +141,16 @@ set(MOD_GAME_H
     util/Matrix.h
 )
 
-if(CMAKE_BUILD_TYPE STREQUAL "debug")
-    list(APPEND MOD_GAME_SRC components/well/Ascii.cpp)
-    list(APPEND MOD_GAME_H components/well/Ascii.h)
+add_library(module_game STATIC ${MOD_GAME_SRC} ${MOD_GAME_H})
+
+if(BUILD_TESTS)
+    target_sources(module_game PRIVATE
+        components/well/Ascii.cpp
+        components/well/Ascii.h
+    )
+    target_compile_definitions(module_game PUBLIC WITH_TESTS)
 endif()
 
-add_library(module_game STATIC ${MOD_GAME_SRC} ${MOD_GAME_H})
 target_link_libraries(module_game module_system)
 target_compile_features(module_game PRIVATE cxx_std_17)
 

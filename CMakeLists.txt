@@ -4,10 +4,11 @@ project(openblok LANGUAGES CXX)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
 include(ProjectVersion)
 
+# Default to release build
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "Release")
+endif()
 
-# Build options
-
-include(SetDefaultBuildType)
 
 # Portable install
 set(INSTALL_PORTABLE_DEFAULT OFF)
@@ -25,10 +26,12 @@ option(ENABLE_MOD "Enable MOD music support" ON)
 option(ENABLE_FLAC "Enable FLAC music support" ON)
 
 # Currently unit tests only work only in Debug
-if(NOT "${CMAKE_BUILD_TYPE}" STREQUAL "release")
-    option(BUILD_TESTS "Build the unit tests" ON)
-    option(BUILD_TEST_COVERAGE "Build the test coverage report" OFF)
+set(BUILD_TESTS_DEFAULT OFF)
+if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
+    set(BUILD_TESTS_DEFAULT ON)
 endif()
+option(BUILD_TESTS "Build the unit tests" ${BUILD_TESTS_DEFAULT})
+option(BUILD_TEST_COVERAGE "Build the test coverage report" OFF)
 
 # Intallation locations
 if(INSTALL_PORTABLE)
@@ -69,7 +72,8 @@ include(BundledDependencies)
 # The main game source
 include_directories(src)
 add_subdirectory(src)
-if(CMAKE_BUILD_TYPE STREQUAL "debug" AND BUILD_TESTS)
+if(BUILD_TESTS)
+    enable_testing()
     add_subdirectory(tests)
 endif()
 
