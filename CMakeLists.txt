@@ -88,6 +88,13 @@ endif()
 if(INSTALL_APPSTREAM)
     install(FILES etc/linux/hu.mmatyas.openblok.metainfo.xml DESTINATION ${APPSTREAMDIR})
 endif()
+if(USE_BUNDLED_SDL2)
+    if(INSTALL_PORTABLE)
+        install(TARGETS SDL2 SDL2_mixer SDL2_image SDL2_ttf DESTINATION ${EXEDIR})
+    else()
+        install(TARGETS SDL2 SDL2_mixer SDL2_image SDL2_ttf DESTINATION "lib")
+    endif()
+endif()
 
 
 # Package
