@@ -12,11 +12,6 @@ target_compile_features(openblok PRIVATE cxx_std_17)
 include(EnableWarnings)
 enable_warnings(openblok)
 
-if(WIN32 OR CYGWIN)
-    include(TryAddingCompilerFlag)
-    try_adding_compiler_flag(openblok -Wl,--subsystem,windows)
-endif()
-
 
 # Install
 install(TARGETS openblok RUNTIME DESTINATION ${EXEDIR})
