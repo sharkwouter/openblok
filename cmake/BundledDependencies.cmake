@@ -11,7 +11,6 @@ function(openblok_declare_gitrepo name url tag)
         GIT_REPOSITORY ${url}
         GIT_TAG ${tag}
         GIT_SHALLOW TRUE
-        GIT_PROGRESS TRUE
         OVERRIDE_FIND_PACKAGE
     )
 endfunction()
