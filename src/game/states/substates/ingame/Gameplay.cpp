@@ -16,7 +16,6 @@
 #include "system/Music.h"
 #include "system/Paths.h"
 #include "system/SoundEffect.h"
-#include "system/util/MakeUnique.h"
 
 #include <algorithm>
 #include <cmath>

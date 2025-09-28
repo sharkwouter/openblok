@@ -10,7 +10,6 @@
 #include "substates/ingame/TeamSelect.h"
 #include "system/Paths.h"
 #include "system/Texture.h"
-#include "system/util/MakeUnique.h"
 
 
 bool isSinglePlayer(GameMode gamemode)

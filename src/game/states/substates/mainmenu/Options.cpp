@@ -14,7 +14,6 @@
 #include "system/Localize.h"
 #include "system/Paths.h"
 #include "system/Texture.h"
-#include "system/util/MakeUnique.h"
 
 #include <algorithm>
 #include <filesystem>

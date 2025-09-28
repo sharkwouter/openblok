@@ -48,9 +48,6 @@ set(MOD_SYSTEM_H
     sdl/SDLSoundEffect.h
     sdl/SDLTexture.h
     sdl/SDLWindow.h
-
-    # Util
-    util/MakeUnique.h
 )
 
 add_library(module_system STATIC ${MOD_SYSTEM_SRC} ${MOD_SYSTEM_H})

@@ -5,7 +5,6 @@
 #include "system/AudioContext.h"
 #include "system/Paths.h"
 #include "system/Texture.h"
-#include "system/util/MakeUnique.h"
 
 
 MainMenuState::MainMenuState(AppContext& app)
