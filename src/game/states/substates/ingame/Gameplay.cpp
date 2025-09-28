@@ -20,6 +20,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <random>
 
 
 namespace SubStates {
@@ -225,7 +226,10 @@ void Gameplay::sendGarbageMaybe(IngameState& parent, DeviceID source_player,
         }
         assert(!possible_players.empty());
 
-        std::random_shuffle(possible_players.begin(), possible_players.end());
+        std::random_device rd;
+        std::mt19937 rgen(rd());
+        std::shuffle(possible_players.begin(), possible_players.end(), rgen);  // TODO: Better place for random generator
+
         DeviceID target_id = possible_players.front();
         assert(target_id != source_player);
 

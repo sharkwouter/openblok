@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include <array>
+#include <random>
 #include <assert.h>
 
 
@@ -43,7 +44,11 @@ PieceType NextQueue::next()
 void NextQueue::generate_global_pieces()
 {
     std::array<PieceType, PieceTypeList.size()> possible_pieces = PieceTypeList;
-    std::random_shuffle(possible_pieces.begin(), possible_pieces.end());
+
+    std::random_device rd;
+    std::mt19937 rgen(rd());
+    std::shuffle(possible_pieces.begin(), possible_pieces.end(), rgen);  // TODO: Better place for random generator
+
     for (const auto p : possible_pieces)
         global_piece_queue.push_back(p);
 }
