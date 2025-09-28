@@ -33,8 +33,8 @@
 #include <assert.h>
 
 
-const std::string LOG_MAIN = "main";
-const std::string LOG_HELP = "help";
+constexpr auto LOG_MAIN = "main";
+constexpr auto LOG_HELP = "help";
 
 int main(int argc, char* argv[])
 {

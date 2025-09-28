@@ -5,12 +5,13 @@
 #include <cstdlib>
 #include <ctime>
 
+constexpr auto LOG_TAG = "init";
+
 
 bool AppContext::init()
 {
-    const std::string log_tag = "init";
     try {
-        Log::info(log_tag) << "Initializing video...\n";
+        Log::info(LOG_TAG) << "Initializing video...\n";
         m_window = Window::create();
 
         std::srand(std::time(nullptr));

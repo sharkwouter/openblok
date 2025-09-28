@@ -82,7 +82,7 @@ std::string ThemeConfig::random_file_from(const std::string& dir_name) const
 
 // TODO: this file has some copies from GameConfigFile
 
-const std::string LOG_TAG("themecfg");
+constexpr auto LOG_TAG("themecfg");
 
 std::unordered_map<std::string, bool*> createGameBoolBinds(GameplayTheme& theme) {
     return {

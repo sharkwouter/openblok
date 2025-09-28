@@ -10,7 +10,7 @@
 #include <assert.h>
 
 
-const std::string LOG_TAG("config");
+constexpr auto LOG_TAG("config");
 
 const std::map<const std::string, InputType> name_to_key = {
     {"pause", InputType::GAME_PAUSE},

@@ -12,7 +12,7 @@
 #include <assert.h>
 
 
-const std::string LOG_TAG("config");
+constexpr auto LOG_TAG("config");
 
 std::unordered_map<std::string, bool*> createBoolBind(SysConfig& sys) {
     return {

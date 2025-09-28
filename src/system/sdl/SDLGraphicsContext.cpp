@@ -14,7 +14,7 @@
 
 static constexpr int SDL_IMG_FLAGS = IMG_INIT_PNG;
 
-const std::string LOG_TAG("video");
+constexpr auto LOG_TAG("video");
 
 SDLGraphicsContext::SDLGraphicsContext(SDL2pp::Window& window)
     : renderer(window, -1, 0x0)

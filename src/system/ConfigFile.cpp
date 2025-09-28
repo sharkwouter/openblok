@@ -7,7 +7,7 @@
 #include <regex>
 
 
-const std::string LOG_TAG("config");
+constexpr auto LOG_TAG("config");
 
 ConfigFile::Blocks ConfigFile::load(const std::string& path)
 {

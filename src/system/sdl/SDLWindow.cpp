@@ -9,7 +9,7 @@
 
 
 namespace {
-const std::string LOG_INPUT_TAG = "input";
+constexpr auto LOG_INPUT_TAG = "input";
 
 uint16_t version_as_num(uint16_t major, uint16_t minor, uint16_t micro)
 {
