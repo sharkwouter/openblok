@@ -1,3 +1,5 @@
+include(OpenblokProps)
+
 find_package(SDL2pp REQUIRED)
 
 
@@ -51,6 +53,7 @@ set(MOD_SYSTEM_H
 )
 
 add_library(module_system STATIC ${MOD_SYSTEM_SRC} ${MOD_SYSTEM_H})
+openblok_add_common_props_for(module_system)
 target_include_directories(module_system PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/../generated")
 
 if(BUILD_TESTS)
@@ -63,6 +66,7 @@ endif()
 # use SDL2
 target_link_libraries(module_system SDL2pp::SDL2pp)
 
+
 # GNU gettext
 if(ENABLE_LOCALES)
     find_package(Intl REQUIRED)
@@ -73,11 +77,6 @@ if(ENABLE_LOCALES)
 
     target_compile_definitions(module_system PUBLIC  WITH_LOCALES)
 endif()
-
-
-include(EnableWarnings)
-enable_warnings(module_system)
-target_compile_features(module_system PRIVATE cxx_std_17)
 
 
 if (ENABLE_MP3)

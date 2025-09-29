@@ -1,3 +1,6 @@
+include(OpenblokProps)
+
+
 set(MOD_GAME_SRC
     AppContext.cpp
     BattleAttackTable.cpp
@@ -142,6 +145,7 @@ set(MOD_GAME_H
 )
 
 add_library(module_game STATIC ${MOD_GAME_SRC} ${MOD_GAME_H})
+openblok_add_common_props_for(module_game)
 
 if(BUILD_TESTS)
     target_sources(module_game PRIVATE
@@ -152,7 +156,3 @@ if(BUILD_TESTS)
 endif()
 
 target_link_libraries(module_game module_system)
-target_compile_features(module_game PRIVATE cxx_std_17)
-
-include(EnableWarnings)
-enable_warnings(module_game)
